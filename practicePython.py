@@ -2,7 +2,7 @@
 def decorator(funct):
 	def new_funct(*nums, **options):
 		try:
-			return "The " + funct(nums)
+			return "The " + funct(*nums, **options)
 		except TypeError:
 			return ""
 	return new_funct
@@ -12,17 +12,16 @@ def decorator(funct):
 def funct(*nums, **options):
 	# exception handling practice
 	try:
-		# print(options)
 		num = 0
-		for i in nums[0]:
+		for i in nums:
 			num += i
-		if "action" in options:
+		if options.get("action") == "reg":
 			print("The original numbers added are %d" % (num))
 		halfnum = num/2
 		return "half number = " + str(halfnum)
 	except TypeError:
 		print("You did not enter a number.")
-		output = nums[0]
+		output = nums
 		print("You entered = ", output)
 
 # generator practice (fibonacci sequence)
